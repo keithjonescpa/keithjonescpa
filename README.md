@@ -32,3 +32,7 @@ I've resolved over 1,000 IRS and Florida DOR cases, but my real joy? Teaching sc
 
 
 🛡️ Helping Good People With Bad Tax Problems™ — One custom solution at a time.
+
+---
+
+<sub>TheCPATaxProblemSolver™, Helping Good People With Bad Tax Problems™, Florida Tax Guy™, Florida Tax Survival Engine™, and FDOR Insider Advantage™ are trademarks of Keith L. Jones, CPA, LLC. © 2026 Keith L. Jones, CPA, LLC. All rights reserved.</sub>
