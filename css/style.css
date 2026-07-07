@@ -6,6 +6,7 @@
 
   --color-brand: #004080;
   --color-accent: #0a58ca;
+  --color-cta: #004080;
   --color-on-brand: #ffffff;
 
   --color-bg: #ffffff;
@@ -24,6 +25,7 @@
   :root{
     --color-brand: #0a2a4d;
     --color-accent: #5b9bff;
+    --color-cta: #1d4ed8;
     --color-on-brand: #e6e9f0;
 
     --color-bg: #0f1420;
@@ -43,6 +45,7 @@
   :root{
     --color-brand: ButtonText;
     --color-accent: LinkText;
+    --color-cta: ButtonText;
     --color-on-brand: Canvas;
 
     --color-bg: Canvas;
@@ -75,9 +78,9 @@ main{ padding:32px 20px; max-width:1100px; margin:0 auto; }
 .sub{ font-size:1.1rem; max-width:800px; margin:10px auto 20px; }
 .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 .btn{ display:inline-block; padding:12px 18px; border-radius:var(--radius-sm); font-weight:700; }
-.btn.primary{ background:var(--color-brand); color:var(--color-text-on-brand); }
+.btn.primary{ background:var(--color-cta); color:#ffffff; border:0; }
 .btn.outline{ border:2px solid var(--color-accent); color:var(--color-accent); }
-.trust{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:16px; color:var(--color-text-muted); }
+.trust{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:16px; padding:0; list-style:none; color:var(--color-text-muted); }
 
 .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; align-items:start; }
