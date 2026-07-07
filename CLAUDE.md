@@ -32,6 +32,19 @@ wrong fact.
   and version control (dated decision recorded via Claude Code
   session).
 
+## Workflow rules
+
+- All changes reach `main` via pull request. Keith merges, or
+  explicitly delegates the merge in writing.
+- CI (`.github/workflows/qa.yml`) runs `scripts/qa.py` on every pull
+  request and push to `main`; it must pass before merge.
+- After merging, verify `main` contains the branch's latest commit —
+  a stale-head merge silently dropped a commit here on 2026-07-07.
+- Keep pull requests small and short-lived; delete branches after
+  merge.
+- New dated decisions land in this file within 15 minutes of being
+  made.
+
 ## QA checklist for site changes
 
 1. Render QA: all pages in light, dark, mobile (~390px, nav toggle
