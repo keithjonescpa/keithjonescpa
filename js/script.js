@@ -28,6 +28,6 @@ Phone: ${phone}
 
 Message:
 ${message}`);
-    window.location.href = `mailto:info@example.com?subject=Free Strategy Call Request&body=${body}`;
+    window.location.href = `mailto:keith@keithjones.cpa?subject=Free Strategy Call Request&body=${body}`;
   });
 }
