@@ -12,11 +12,13 @@ wrong fact.
 - Florida CPA license: **AC0028367** (verified against keithjones.cpa
   2026-07-07; DBPR is the authoritative registry if any doubt)
 - Phone: 844-888-1040
-- Contact email: TBD — do not invent one. The `info@example.com`
-  placeholders in `contact.html` and `js/script.js` remain until Keith
-  supplies the real address.
-- Canonical domain for JSON-LD `url` fields: TBD — leave `"#"` until
-  Keith confirms which web property this site serves.
+- Contact email: keith@keithjones.cpa (confirmed by Keith 2026-07-07)
+- Canonical domain: https://keithjones.cpa — apex, no www (verified
+  2026-07-07: www 301-redirects to apex). JSON-LD `url` fields use
+  the root for ProfessionalService and the page's own URL for
+  page-level schema types. Hosting/deployment decision (serving this
+  repo at that domain, e.g. via Cloudflare Pages) is still undated —
+  raise it before launch.
 - Any results claim ($15M+, 70%+, case counts) must carry the
   no-guarantee disclaimer ("Past results are not a guarantee of future
   outcomes.").
@@ -29,6 +31,19 @@ wrong fact.
 - 2026-07-07: GitHub approved by Keith for public-facing web assets
   and version control (dated decision recorded via Claude Code
   session).
+
+## Workflow rules
+
+- All changes reach `main` via pull request. Keith merges, or
+  explicitly delegates the merge in writing.
+- CI (`.github/workflows/qa.yml`) runs `scripts/qa.py` on every pull
+  request and push to `main`; it must pass before merge.
+- After merging, verify `main` contains the branch's latest commit —
+  a stale-head merge silently dropped a commit here on 2026-07-07.
+- Keep pull requests small and short-lived; delete branches after
+  merge.
+- New dated decisions land in this file within 15 minutes of being
+  made.
 
 ## QA checklist for site changes
 
