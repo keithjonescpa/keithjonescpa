@@ -21,6 +21,10 @@ DISCLAIMER = "not a guarantee"
 # Values that must appear nowhere in tracked text files.
 STALE = ["AC0029107", "info@example.com", '"url": "#"', "904-467-0868"]
 
+CASE_COUNT_RE = re.compile(
+    r"\b(?:over\s+)?\d[\d,]*\+?\s+(?:[A-Za-z][\w&.-]*\s+){0,4}cases?\b",
+    re.I,
+)
 TEXT_GLOBS = ["*.html", "js/*.js", "css/*.css", "*.md", "*.xml", "*.txt"]
 
 failures = []
@@ -43,6 +47,10 @@ for f in text_files():
     for s in STALE:
         if s in body:
             fail(f"{f.name}: stale value {s!r} present")
+    if re.search(r"\bwww\.keithjones\.cpa\b", body, re.I):
+        fail(f"{f.name}: non-canonical www hostname present")
+    if ("$15M+" in body or "70%+" in body or CASE_COUNT_RE.search(body)) and DISCLAIMER not in body.lower():
+        fail(f"{f.name}: results claim without no-guarantee disclaimer")
 
 # 2. Per-page canonical facts
 for p in pages:
@@ -65,10 +73,6 @@ for p in pages:
                     fail(f"{p.name}: JSON-LD url {url!r} not under {DOMAIN}")
         except json.JSONDecodeError as e:
             fail(f"{p.name}: JSON-LD invalid: {e}")
-    # Results claims require the no-guarantee disclaimer.
-    if ("$15M+" in body or "70%+" in body) and DISCLAIMER not in body:
-        fail(f"{p.name}: results claim without no-guarantee disclaimer")
-
 # 3. Contact email present where mail is sent
 for name in ["contact.html", "js/script.js"]:
     if EMAIL not in (ROOT / name).read_text(encoding="utf-8"):

@@ -24,11 +24,13 @@ SEO and web performance tuning with partners fluent in Elementor and Semrush
 📫 How to reach me:
 📧 Keith@KeithJones.CPA
 📞 844-888-1040
-🌐 www.KeithJones.CPA
+🌐 [keithjones.cpa](https://keithjones.cpa)
 😄 Pronouns:
 He/Him
 ⚡ Fun fact:
 I've resolved over 1,000 IRS and Florida DOR cases, but my real joy? Teaching scared taxpayers that they do have options—and then making those options real. Oh, and I love a strong cup of coffee, a clean CRM, and a well-run Zoom.
+
+<sub>Past results are not a guarantee of future outcomes.</sub>
 
 
 🛡️ Helping Good People With Bad Tax Problems™ — One custom solution at a time.
