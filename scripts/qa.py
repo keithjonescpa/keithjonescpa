@@ -22,7 +22,7 @@ DISCLAIMER = "not a guarantee"
 STALE = ["AC0029107", "info@example.com", '"url": "#"', "904-467-0868"]
 
 CASE_COUNT_RE = re.compile(
-    r"\b(?:over\s+)?\d[\d,]*\+?\s+(?:IRS(?:\s+and\s+Florida\s+DOR)?\s+)?cases?\b",
+    r"\b(?:over\s+)?\d[\d,]*\+?\s+(?:[A-Za-z][\w&.-]*\s+){0,4}cases?\b",
     re.I,
 )
 TEXT_GLOBS = ["*.html", "js/*.js", "css/*.css", "*.md", "*.xml", "*.txt"]
