@@ -13,12 +13,19 @@ wrong fact.
   2026-07-07; DBPR is the authoritative registry if any doubt)
 - Phone: 844-888-1040
 - Contact email: keith@keithjones.cpa (confirmed by Keith 2026-07-07)
-- Canonical domain: https://keithjones.cpa — apex, no www (verified
-  2026-07-07: www 301-redirects to apex). JSON-LD `url` fields use
-  the root for ProfessionalService and the page's own URL for
-  page-level schema types. Hosting/deployment decision (serving this
-  repo at that domain, e.g. via Cloudflare Pages) is still undated —
-  raise it before launch.
+- Canonical domain for THIS SITE: **https://fdor.keithjones.cpa**
+  (decided 2026-07-16). The apex https://keithjones.cpa serves Keith's
+  main ~290-URL content property and is NOT replaced by this repo —
+  this site is an FDOR-defense campaign funnel on the subdomain.
+  Never point the apex at this repo. URLs are extensionless (Workers
+  clean URLs): canonical/OG/JSON-LD/sitemap use `/about`, not
+  `/about.html`. JSON-LD `url` fields use the root for
+  ProfessionalService and the page's own URL for page-level schema
+  types.
+- Hosting (decided 2026-07-16): Cloudflare Workers static assets,
+  Git-connected to this repo — production deploys from `main` on
+  every push. Staging URL:
+  https://keithjonescpa.thecpataxproblemsolvers.workers.dev
 - Any results claim ($15M+, 70%+, case counts) must carry the
   no-guarantee disclaimer ("Past results are not a guarantee of future
   outcomes.").

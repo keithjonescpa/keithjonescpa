@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 LICENSE = "AC0028367"
 PHONE = "844-888-1040"
-DOMAIN = "https://keithjones.cpa"
+DOMAIN = "https://fdor.keithjones.cpa"
 EMAIL = "keith@keithjones.cpa"
 DISCLAIMER = "not a guarantee"
 
@@ -59,8 +59,9 @@ for p in pages:
         fail(f"{p.name}: license {LICENSE} missing")
     if PHONE not in body:
         fail(f"{p.name}: phone {PHONE} missing")
-    if "<link rel='canonical'" not in body:
-        fail(f"{p.name}: canonical link missing")
+    page_url = DOMAIN + "/" if p.name == "index.html" else f"{DOMAIN}/{p.stem}"
+    if f"<link rel='canonical' href='{page_url}'>" not in body:
+        fail(f"{p.name}: canonical link missing or not {page_url}")
     m = re.search(r"<script type='application/ld\+json'>(.*?)</script>", body, re.S)
     if not m:
         fail(f"{p.name}: JSON-LD block missing")
@@ -86,7 +87,12 @@ for p in list(pages) + [ROOT / "404.html"]:
     for target in link_re.findall(p.read_text(encoding="utf-8")):
         if target.startswith(("http://", "https://", "mailto:", "tel:", "#", "data:")):
             continue
-        if not (ROOT / target.split("#")[0]).exists():
+        path = target.split("#")[0].lstrip("/")
+        if path == "":
+            path = "index.html"
+        elif "." not in path.rsplit("/", 1)[-1]:
+            path += ".html"
+        if not (ROOT / path).exists():
             fail(f"{p.name}: broken internal reference {target!r}")
 
 # 5. Sitemap covers every page and only real files
@@ -99,9 +105,14 @@ else:
         if not loc.startswith(DOMAIN):
             fail(f"sitemap.xml: {loc} not under {DOMAIN}")
         path = loc[len(DOMAIN):].lstrip("/") or "index.html"
+        if "." not in path.rsplit("/", 1)[-1]:
+            path += ".html"
         if not (ROOT / path).exists():
             fail(f"sitemap.xml: {loc} has no matching file")
-    listed = {loc[len(DOMAIN):].lstrip("/") or "index.html" for loc in locs}
+    def loc_file(loc):
+        path = loc[len(DOMAIN):].lstrip("/") or "index.html"
+        return path if "." in path.rsplit("/", 1)[-1] else path + ".html"
+    listed = {loc_file(loc) for loc in locs}
     for p in pages:
         if p.name not in listed:
             fail(f"sitemap.xml: {p.name} not listed")
