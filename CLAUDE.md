@@ -26,6 +26,11 @@ wrong fact.
   Git-connected to this repo — production deploys from `main` on
   every push. Staging URL:
   https://keithjonescpa.thecpataxproblemsolvers.workers.dev
+- Typography (Brand System v5.0, adopted 2026-07-23): this site is a
+  MARKETING asset — headings use Playfair Display, body uses Inter,
+  Lora is retired everywhere. Fonts are self-hosted in `assets/fonts/`
+  (never loaded from Google Fonts — keeps CSP `default-src 'self'`).
+  Full rules: `BRAND_SYSTEM.md`.
 - Any results claim ($15M+, 70%+, case counts) must carry the
   no-guarantee disclaimer ("Past results are not a guarantee of future
   outcomes.").

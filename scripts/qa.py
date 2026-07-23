@@ -74,6 +74,25 @@ for p in pages:
                     fail(f"{p.name}: JSON-LD url {url!r} not under {DOMAIN}")
         except json.JSONDecodeError as e:
             fail(f"{p.name}: JSON-LD invalid: {e}")
+# 2b. Typography per Brand System v5.0: Playfair headings, Inter body, self-hosted
+css = (ROOT / "css" / "style.css").read_text(encoding="utf-8")
+for needle, msg in [
+    ("'Playfair Display', Georgia, serif", "heading font stack missing"),
+    ("'Inter', Arial, sans-serif", "body font stack missing"),
+    ("h1, h2, h3{ font-family:var(--font-heading); }", "headings not mapped to Playfair"),
+    ("assets/fonts/inter-latin.woff2", "self-hosted Inter face missing"),
+    ("assets/fonts/playfair-display-latin.woff2", "self-hosted Playfair face missing"),
+]:
+    if needle not in css:
+        fail(f"style.css: {msg}")
+if "fonts.googleapis.com" in css:
+    fail("style.css: external Google Fonts reference (fonts must be self-hosted)")
+if "Lora" in css:
+    fail("style.css: retired font Lora referenced")
+for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-latin.woff2"]:
+    if not (ROOT / fname).exists():
+        fail(f"{fname}: font file missing")
+
 # 3. Contact email present where mail is sent
 for name in ["contact.html", "js/script.js"]:
     if EMAIL not in (ROOT / name).read_text(encoding="utf-8"):
