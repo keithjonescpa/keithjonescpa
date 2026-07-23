@@ -19,7 +19,11 @@ EMAIL = "keith@keithjones.cpa"
 DISCLAIMER = "not a guarantee"
 
 # Values that must appear nowhere in tracked text files.
-STALE = ["AC0029107", "info@example.com", '"url": "#"', "904-467-0868"]
+STALE = [
+    "AC0029107", "info@example.com", '"url": "#"', "904-467-0868",
+    # fonts must be self-hosted (Brand System v5.0 + CSP default-src 'self')
+    "fonts.googleapis.com", "fonts.gstatic.com",
+]
 
 CASE_COUNT_RE = re.compile(
     r"\b(?:over\s+)?\d[\d,]*\+?\s+(?:[A-Za-z][\w&.-]*\s+){0,4}cases?\b",
@@ -85,8 +89,6 @@ for needle, msg in [
 ]:
     if needle not in css:
         fail(f"style.css: {msg}")
-if "fonts.googleapis.com" in css:
-    fail("style.css: external Google Fonts reference (fonts must be self-hosted)")
 if "Lora" in css:
     fail("style.css: retired font Lora referenced")
 for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-latin.woff2"]:
