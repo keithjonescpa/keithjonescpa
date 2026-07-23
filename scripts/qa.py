@@ -81,7 +81,7 @@ for p in pages:
 # 2b. Typography per Brand System v5.0: Playfair headings, Inter body, self-hosted
 css_path = ROOT / "css" / "style.css"
 if not css_path.exists():
-    fail("css/style.css missing")
+    fail("css/style.css: missing")
 else:
     css = css_path.read_text(encoding="utf-8")
     for needle, msg in [
@@ -91,11 +91,11 @@ else:
         ("assets/fonts/playfair-display-latin.woff2", "self-hosted Playfair face missing"),
     ]:
         if needle not in css:
-            fail(f"style.css: {msg}")
+            fail(f"css/style.css: {msg}")
     if not re.search(r"h1\s*,\s*h2\s*,\s*h3\s*\{[^}]*font-family\s*:\s*var\(--font-heading\)", css):
-        fail("style.css: h1-h3 not mapped to var(--font-heading)")
+        fail("css/style.css: h1-h3 not mapped to var(--font-heading)")
     if "Lora" in css:
-        fail("style.css: retired font Lora referenced")
+        fail("css/style.css: retired font Lora referenced")
 for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-latin.woff2"]:
     if not (ROOT / fname).exists():
         fail(f"{fname}: font file missing")
