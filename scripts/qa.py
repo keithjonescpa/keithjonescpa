@@ -79,19 +79,23 @@ for p in pages:
         except json.JSONDecodeError as e:
             fail(f"{p.name}: JSON-LD invalid: {e}")
 # 2b. Typography per Brand System v5.0: Playfair headings, Inter body, self-hosted
-css = (ROOT / "css" / "style.css").read_text(encoding="utf-8")
-for needle, msg in [
-    ("'Playfair Display', Georgia, serif", "heading font stack missing"),
-    ("'Inter', Arial, sans-serif", "body font stack missing"),
-    ("assets/fonts/inter-latin.woff2", "self-hosted Inter face missing"),
-    ("assets/fonts/playfair-display-latin.woff2", "self-hosted Playfair face missing"),
-]:
-    if needle not in css:
-        fail(f"style.css: {msg}")
-if not re.search(r"h1\s*,\s*h2\s*,\s*h3\s*\{[^}]*font-family\s*:\s*var\(--font-heading\)", css):
-    fail("style.css: h1-h3 not mapped to var(--font-heading)")
-if "Lora" in css:
-    fail("style.css: retired font Lora referenced")
+css_path = ROOT / "css" / "style.css"
+if not css_path.exists():
+    fail("css/style.css missing")
+else:
+    css = css_path.read_text(encoding="utf-8")
+    for needle, msg in [
+        ("'Playfair Display', Georgia, serif", "heading font stack missing"),
+        ("'Inter', Arial, sans-serif", "body font stack missing"),
+        ("assets/fonts/inter-latin.woff2", "self-hosted Inter face missing"),
+        ("assets/fonts/playfair-display-latin.woff2", "self-hosted Playfair face missing"),
+    ]:
+        if needle not in css:
+            fail(f"style.css: {msg}")
+    if not re.search(r"h1\s*,\s*h2\s*,\s*h3\s*\{[^}]*font-family\s*:\s*var\(--font-heading\)", css):
+        fail("style.css: h1-h3 not mapped to var(--font-heading)")
+    if "Lora" in css:
+        fail("style.css: retired font Lora referenced")
 for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-latin.woff2"]:
     if not (ROOT / fname).exists():
         fail(f"{fname}: font file missing")
