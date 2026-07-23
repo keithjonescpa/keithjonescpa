@@ -83,12 +83,13 @@ css = (ROOT / "css" / "style.css").read_text(encoding="utf-8")
 for needle, msg in [
     ("'Playfair Display', Georgia, serif", "heading font stack missing"),
     ("'Inter', Arial, sans-serif", "body font stack missing"),
-    ("h1, h2, h3{ font-family:var(--font-heading); }", "headings not mapped to Playfair"),
     ("assets/fonts/inter-latin.woff2", "self-hosted Inter face missing"),
     ("assets/fonts/playfair-display-latin.woff2", "self-hosted Playfair face missing"),
 ]:
     if needle not in css:
         fail(f"style.css: {msg}")
+if not re.search(r"h1\s*,\s*h2\s*,\s*h3\s*\{[^}]*font-family\s*:\s*var\(--font-heading\)", css):
+    fail("style.css: h1-h3 not mapped to var(--font-heading)")
 if "Lora" in css:
     fail("style.css: retired font Lora referenced")
 for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-latin.woff2"]:
