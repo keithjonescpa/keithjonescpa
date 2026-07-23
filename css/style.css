@@ -1,6 +1,22 @@
+@font-face{
+  font-family:'Inter';
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url('/assets/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Playfair Display';
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url('/assets/fonts/playfair-display-latin.woff2') format('woff2');
+}
+
 :root{
   color-scheme: light dark;
-  --font: Inter, Arial, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', Arial, sans-serif;
   --radius: 12px;
   --radius-sm: 8px;
 
@@ -62,7 +78,8 @@
 }
 
 *{ box-sizing:border-box; }
-body{ margin:0; font-family:var(--font); color:var(--color-text); line-height:1.6; background:var(--color-bg); }
+h1, h2, h3{ font-family:var(--font-heading); }
+body{ margin:0; font-family:var(--font-body); color:var(--color-text); line-height:1.6; background:var(--color-bg); }
 a{ color:var(--color-accent); text-decoration:none; }
 
 .top-nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:var(--color-brand); color:var(--color-text-on-brand); position:sticky; top:0; z-index:10; }
