@@ -112,7 +112,7 @@ main{ padding:32px 20px; max-width:1100px; margin:0 auto; }
 
 form{ display:flex; flex-direction:column; gap:10px; }
 label{ display:flex; flex-direction:column; text-align:left; font-weight:600; }
-input, textarea{ padding:10px; border:1px solid var(--color-input-border); border-radius:var(--radius-sm); font:inherit; background:var(--color-surface); color:var(--color-text); }
+input, textarea, select{ padding:10px; border:1px solid var(--color-input-border); border-radius:var(--radius-sm); font:inherit; background:var(--color-surface); color:var(--color-text); }
 button{ cursor:pointer; }
 
 @media (max-width: 900px){
