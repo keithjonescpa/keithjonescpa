@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Wage Garnishment Calculator | IRS Levy &amp; Creditor Limits | Keith Jones, CPA</title>
+  <meta name='description' content='Free wage garnishment estimator. See the general federal limit on how much a creditor can take from your paycheck, and how IRS tax levies work differently.'>
+  <meta name='keywords' content='wage garnishment calculator, IRS wage levy, garnishment limits, Florida CPA, IRS tax resolution, Keith Jones CPA, Jacksonville CPA'>
+  <link rel='icon' type='image/svg+xml' href='/assets/favicon.svg'>
+  <link rel='canonical' href='https://fdor.keithjones.cpa/irs-garnishment-calculator'>
+  <meta property='og:type' content='website'>
+  <meta property='og:site_name' content='Keith L. Jones, CPA'>
+  <meta property='og:title' content='Wage Garnishment Calculator | IRS Levy &amp; Creditor Limits'>
+  <meta property='og:description' content='Free wage garnishment estimator. See the general federal limit on how much a creditor can take from your paycheck, and how IRS tax levies work differently.'>
+  <meta property='og:url' content='https://fdor.keithjones.cpa/irs-garnishment-calculator'>
+  <meta name='twitter:card' content='summary'>
+  <link rel='stylesheet' href='/css/style.css'>
+  <script type='application/ld+json'>
+[
+  {
+    "name": "Keith Jones, CPA",
+    "telephone": "+1-844-888-1040",
+    "url": "https://fdor.keithjones.cpa",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jacksonville",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Florida"
+    },
+    "@type": "ProfessionalService",
+    "@context": "https://schema.org"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wage Garnishment Calculator",
+    "description": "Estimate the general federal limit on wage garnishment under Title III of the Consumer Credit Protection Act, and learn how IRS tax levies differ.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://fdor.keithjones.cpa/irs-garnishment-calculator"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://fdor.keithjones.cpa/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Wage Garnishment Calculator",
+        "item": "https://fdor.keithjones.cpa/irs-garnishment-calculator"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+<body>
+  <nav class='top-nav'>
+  <div class='brand'>Keith Jones, CPA</div>
+  <button id='menuToggle' aria-label='Toggle navigation'>☰</button>
+  <ul id='navList'>
+    <li><a href='/'>Home</a></li>
+    <li><a href='/tax-insider'>Tax Insider</a></li>
+    <li><a href='/about'>About</a></li>
+    <li><a href='/services'>Services</a></li>
+    <li><a href='/contact'>Contact</a></li>
+    <li><a class='accent' href='/resource'>Free Resource</a></li>
+  </ul>
+</nav>
+  <main>
+
+<header class='page-header'>
+  <h1>Wage Garnishment Calculator</h1>
+  <p>Estimate how much of your paycheck a general creditor can take under federal law—and see why an IRS levy follows different rules.</p>
+</header>
+
+<section class='card' style='margin-bottom:20px;'>
+  <h2>Before you start</h2>
+  <p>This tool estimates the <strong>general federal limit</strong> on wage garnishment under Title III of the Consumer Credit Protection Act (15 U.S.C. &sect; 1673). It applies to most ordinary creditor and judgment garnishments. <strong>IRS tax levies do not use this formula</strong>—see the section below. Child support and student-loan garnishments also follow their own rules.</p>
+</section>
+
+<section class='grid-2'>
+  <div>
+    <h2>Estimate your limit</h2>
+    <form id='garnishCalc'>
+      <label>Pay frequency
+        <select name='frequency' required>
+          <option value='weekly'>Weekly</option>
+          <option value='biweekly'>Every two weeks</option>
+          <option value='semimonthly'>Twice a month</option>
+          <option value='monthly'>Monthly</option>
+        </select>
+      </label>
+      <label>Disposable earnings this pay period ($)
+        <input type='number' name='disposable' min='0' step='0.01' inputmode='decimal' placeholder='e.g. 900' required>
+      </label>
+      <label>Minimum wage ($/hour)
+        <input type='number' name='minwage' min='0' step='0.01' inputmode='decimal' value='7.25' required>
+      </label>
+      <button type='submit' class='btn primary'>Estimate</button>
+      <p class='small'>“Disposable earnings” means your take-home pay after legally required deductions (taxes, Social Security, Medicare)—not after voluntary deductions like retirement or insurance. Minimum wage defaults to the federal rate; enter your state’s rate if it is higher.</p>
+    </form>
+  </div>
+  <div>
+    <h2>Your estimate</h2>
+    <div id='garnishResult' class='card' aria-live='polite'>
+      <p>Enter your pay details and select <strong>Estimate</strong> to see the maximum a general creditor could garnish this pay period.</p>
+    </div>
+    <p class='disclaimer'>This is a general estimate for education only—not legal or tax advice, and not a prediction about any specific case. Your actual protection may be greater under state law.</p>
+  </div>
+</section>
+
+<section>
+  <h2>How the general federal limit works</h2>
+  <p>For most creditor garnishments, federal law caps the amount taken from each paycheck at the <strong>lesser</strong> of:</p>
+  <ul class='checklist'>
+    <li><strong>25% of your disposable earnings</strong> for that pay period, or</li>
+    <li>the amount by which your disposable earnings <strong>exceed 30 times the federal minimum wage</strong> (scaled to your pay period).</li>
+  </ul>
+  <p>If your disposable earnings are at or below that protected floor, wages generally cannot be garnished at all for an ordinary debt. Many states protect more of your pay than the federal minimum.</p>
+</section>
+
+<section>
+  <h2>Why an IRS wage levy is different</h2>
+  <p>An IRS levy on wages is <strong>not</strong> limited by the 25% rule above. Instead, the IRS lets you keep an <strong>exempt amount</strong> set by Internal Revenue Code &sect; 6334 and published each year in <strong>IRS Publication 1494</strong>. That exempt amount depends on your filing status, pay period, and number of dependents—the rest of your pay can be levied.</p>
+  <p>Because the Publication 1494 tables change every year, this calculator does not estimate an IRS levy figure. To pin down what the IRS can actually take—and to stop or release a levy—work from the current-year table with a professional who can review your notice. Florida also provides a strong exemption for the wages of a head of family under Fla. Stat. &sect; 222.11, which can protect earnings that federal law alone would not.</p>
+</section>
+
+<section class='cta-band'>
+  <h2>Facing a levy or garnishment?</h2>
+  <p>Don’t guess at the numbers. Get a free, confidential review of your notice and your options.</p>
+  <a class='btn primary' href='/contact#consult'>Book Free Strategy Call</a>
+  <a class='btn outline' href='tel:18448881040'>Call 844-888-1040</a>
+</section>
+
+  </main>
+  <footer>
+  <div class='footer-inner'>
+    <p>&copy; 2026 Keith Jones, CPA — Serving all 67 Florida counties</p>
+    <p><a href='tel:18448881040' class='phone'>Call 844-888-1040</a> · Licensed Florida CPA (#AC0028367)</p>
+  </div>
+</footer>
+  <script src='/js/script.js'></script>
+</body>
+</html>
