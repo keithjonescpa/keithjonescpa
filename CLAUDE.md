@@ -22,10 +22,12 @@ wrong fact.
   `/about.html`. JSON-LD `url` fields use the root for
   ProfessionalService and the page's own URL for page-level schema
   types.
-- Hosting (decided 2026-07-16): Cloudflare Workers static assets,
-  Git-connected to this repo — production deploys from `main` on
-  every push. Staging URL:
-  https://keithjonescpa.thecpataxproblemsolvers.workers.dev
+- Hosting (decided 2026-07-16): Cloudflare Workers static assets via
+  the Git-connected Worker `keithjonescpa` — production deploys from
+  `main` on every push and serves https://fdor.keithjones.cpa (custom
+  domain attached 2026-07-23). Per-commit and per-branch preview URLs
+  (`*-keithjonescpa.thecpataxproblemsolvers.workers.dev`) are posted
+  by the Cloudflare bot on each pull request.
 - Typography (Brand System v5.0, adopted 2026-07-23): this site is a
   MARKETING asset — headings use Playfair Display, body uses Inter,
   Lora is retired everywhere. Fonts are self-hosted in `assets/fonts/`
@@ -43,6 +45,13 @@ wrong fact.
 - 2026-07-07: GitHub approved by Keith for public-facing web assets
   and version control (dated decision recorded via Claude Code
   session).
+- 2026-08-03: OpenAI Codex and GitHub Copilot coding agents approved
+  for THIS public repository only — all work lands via pull request,
+  CI must pass, and a human (Keith) merges. Their previously merged
+  work (PRs #4 and #11, both human-reviewed and human-merged) is
+  ratified retroactively. Approval is recorded by Keith's merge of
+  the pull request that added this line. Branch names must carry the
+  authoring tool's prefix (claude/, codex/, copilot/).
 
 ## Workflow rules
 
