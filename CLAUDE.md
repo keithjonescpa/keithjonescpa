@@ -9,8 +9,15 @@ against this list before any push; a render pass alone cannot catch a
 wrong fact.
 
 - Firm name: Keith L. Jones, CPA
-- Florida CPA license: **AC0028367** (verified against keithjones.cpa
-  2026-07-07; DBPR is the authoritative registry if any doubt)
+- Florida CPA license (individual): **AC0028367** (verified against
+  keithjones.cpa 2026-07-07; DBPR is the authoritative registry if any
+  doubt)
+- Florida CPA firm license: **AD0016958** (confirmed by Keith
+  2026-08-05). Both license numbers appear in the site footer as links
+  to the DBPR licensee search
+  (https://www.myfloridalicense.com/wl11.asp) — link the search page,
+  never a DBPR record deep-link, because those carry session IDs and
+  break.
 - Brand tagline (**protected wording**, confirmed by Keith 2026-08-05):
   **Solving Bad Tax Problems for Good People™** — reproduce exactly,
   including capitalisation. Do not soften, shorten, or reword it
