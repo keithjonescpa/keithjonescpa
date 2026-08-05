@@ -60,10 +60,6 @@ for f in text_files():
 # 2. Per-page canonical facts
 for p in pages:
     body = p.read_text(encoding="utf-8")
-    if LICENSE not in body:
-        fail(f"{p.name}: license {LICENSE} missing")
-    if FIRM_LICENSE not in body:
-        fail(f"{p.name}: firm license {FIRM_LICENSE} missing")
     if PHONE not in body:
         fail(f"{p.name}: phone {PHONE} missing")
     page_url = DOMAIN + "/" if p.name == "index.html" else f"{DOMAIN}/{p.stem}"
@@ -81,6 +77,22 @@ for p in pages:
                     fail(f"{p.name}: JSON-LD url {url!r} not under {DOMAIN}")
         except json.JSONDecodeError as e:
             fail(f"{p.name}: JSON-LD invalid: {e}")
+# 2a. Both credentials must be DBPR-verifiable LINKS in the footer of every
+# page, 404 included. Raw license text alone is not verifiable by a visitor,
+# so checking for the number is not enough — check the anchor and its target.
+DBPR_URL = "https://www.myfloridalicense.com/wl11.asp"
+anchor_re = re.compile(r"<a\s+([^>]*?)>\s*#([A-Z]{2}\d+)\s*</a>", re.I)
+for p in sorted(ROOT.glob("*.html")):
+    body = p.read_text(encoding="utf-8")
+    linked = {num: f"href='{DBPR_URL}'" in attrs for attrs, num in anchor_re.findall(body)}
+    for num in (LICENSE, FIRM_LICENSE):
+        if num not in body:
+            fail(f"{p.name}: license #{num} missing")
+        elif num not in linked:
+            fail(f"{p.name}: license #{num} present but not a link")
+        elif not linked[num]:
+            fail(f"{p.name}: license #{num} link does not point at {DBPR_URL}")
+
 # 2b. Typography per Brand System v5.0: Playfair headings, Inter body, self-hosted
 css_path = ROOT / "css" / "style.css"
 if not css_path.exists():
