@@ -60,8 +60,6 @@ for f in text_files():
 # 2. Per-page canonical facts
 for p in pages:
     body = p.read_text(encoding="utf-8")
-    if PHONE not in body:
-        fail(f"{p.name}: phone {PHONE} missing")
     page_url = DOMAIN + "/" if p.name == "index.html" else f"{DOMAIN}/{p.stem}"
     if f"<link rel='canonical' href='{page_url}'>" not in body:
         fail(f"{p.name}: canonical link missing or not {page_url}")
@@ -85,6 +83,8 @@ anchor_re = re.compile(r"<a\s+([^>]*?)>\s*#([A-Z]{2}\d+)\s*</a>", re.I)
 for p in sorted(ROOT.glob("*.html")):
     body = p.read_text(encoding="utf-8")
     linked = {num: f"href='{DBPR_URL}'" in attrs for attrs, num in anchor_re.findall(body)}
+    if PHONE not in body:
+        fail(f"{p.name}: phone {PHONE} missing")
     for num in (LICENSE, FIRM_LICENSE):
         if num not in body:
             fail(f"{p.name}: license #{num} missing")
