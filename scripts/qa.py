@@ -174,6 +174,37 @@ for fname in ["assets/fonts/inter-latin.woff2", "assets/fonts/playfair-display-l
     if not (ROOT / fname).exists():
         fail(f"{fname}: font file missing")
 
+# 2c. Deployment and CSP invariants. These exist because a QA sweep on
+# 2026-08-05 found three defects that render- and content-checks could not see:
+# an inline style silently blocked by the CSP, a branded 404 page Cloudflare was
+# never told to serve, and CSS classes referenced in markup but never defined.
+INLINE_STYLE_RE = re.compile(r"<[^>]+\sstyle=", re.I)
+for p in sorted(ROOT.glob("*.html")):
+    body = p.read_text(encoding="utf-8")
+    for m in INLINE_STYLE_RE.finditer(body):
+        fail(f"{p.name}: inline style attribute — blocked by CSP default-src 'self'; "
+             "move it to a class in css/style.css")
+
+wrangler = ROOT / "wrangler.jsonc"
+if not wrangler.exists():
+    fail("wrangler.jsonc missing")
+else:
+    wtext = wrangler.read_text(encoding="utf-8")
+    if '"not_found_handling": "404-page"' not in wtext:
+        fail('wrangler.jsonc: assets.not_found_handling must be "404-page", '
+             "otherwise Cloudflare returns a bare 404 and 404.html is never served")
+
+# Every class referenced in markup must exist in the stylesheet.
+if css_path.exists():
+    css_all = css_path.read_text(encoding="utf-8")
+    used = set()
+    for p in sorted(ROOT.glob("*.html")):
+        for attr in re.findall(r"class='([^']+)'", p.read_text(encoding="utf-8")):
+            used.update(attr.split())
+    for cls in sorted(used):
+        if not re.search(r"\." + re.escape(cls) + r"[\s,{:.]", css_all):
+            fail(f"css/style.css: class {cls!r} is used in markup but never defined")
+
 # 3. Contact email present where mail is sent
 for name in ["contact.html", "js/script.js"]:
     if EMAIL not in (ROOT / name).read_text(encoding="utf-8"):

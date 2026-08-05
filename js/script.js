@@ -4,11 +4,10 @@ const toggle = document.getElementById('menuToggle');
 const navList = document.getElementById('navList');
 if (toggle) {
   toggle.addEventListener('click', () => {
-    if (navList.style.display === 'flex') {
-      navList.style.display = 'none';
-    } else {
-      navList.style.display = 'flex';
-    }
+    const open = navList.style.display === 'flex';
+    navList.style.display = open ? 'none' : 'flex';
+    // Keep assistive tech informed; the visual state alone is not announced.
+    toggle.setAttribute('aria-expanded', String(!open));
   });
 }
 
