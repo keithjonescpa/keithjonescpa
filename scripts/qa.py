@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 LICENSE = "AC0028367"
+FIRM_LICENSE = "AD0016958"
 PHONE = "844-888-1040"
 DOMAIN = "https://fdor.keithjones.cpa"
 EMAIL = "keith@keithjones.cpa"
@@ -61,6 +62,8 @@ for p in pages:
     body = p.read_text(encoding="utf-8")
     if LICENSE not in body:
         fail(f"{p.name}: license {LICENSE} missing")
+    if FIRM_LICENSE not in body:
+        fail(f"{p.name}: firm license {FIRM_LICENSE} missing")
     if PHONE not in body:
         fail(f"{p.name}: phone {PHONE} missing")
     page_url = DOMAIN + "/" if p.name == "index.html" else f"{DOMAIN}/{p.stem}"
