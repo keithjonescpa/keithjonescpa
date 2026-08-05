@@ -11,6 +11,14 @@ wrong fact.
 - Firm name: Keith L. Jones, CPA
 - Florida CPA license: **AC0028367** (verified against keithjones.cpa
   2026-07-07; DBPR is the authoritative registry if any doubt)
+- Brand tagline (**protected wording**, confirmed by Keith 2026-08-05):
+  **Solving Bad Tax Problems for Good People™** — reproduce exactly,
+  including capitalisation. Do not soften, shorten, or reword it
+  ("helping taxpayers", generic "tax relief" phrasing) in any
+  external-facing asset; consistency is the equity. CI enforces the
+  exact string. Closing brand lockup:
+  `Keith L. Jones, CPA` / `TheCPATaxProblemSolver™` /
+  `Solving Bad Tax Problems for Good People™`.
 - Phone: 844-888-1040
 - Contact email: keith@keithjones.cpa (confirmed by Keith 2026-07-07)
 - Canonical domain for THIS SITE: **https://fdor.keithjones.cpa**

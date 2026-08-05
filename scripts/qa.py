@@ -17,6 +17,13 @@ PHONE = "844-888-1040"
 DOMAIN = "https://fdor.keithjones.cpa"
 EMAIL = "keith@keithjones.cpa"
 DISCLAIMER = "not a guarantee"
+# Protected brand wording (Keith, 2026-08-05). The tagline is brand equity:
+# every occurrence must match exactly, so no contributor or tool can quietly
+# "improve" it. See CLAUDE.md.
+TAGLINE = "Solving Bad Tax Problems for Good People"
+TAGLINE_DRIFT_RE = re.compile(
+    r"Solving\s+Bad\s+Tax\s+Problems(?!\s+for\s+Good\s+People)", re.I
+)
 
 # Values that must appear nowhere in tracked text files.
 STALE = [
@@ -55,6 +62,23 @@ for f in text_files():
         fail(f"{f.name}: non-canonical www hostname present")
     if ("$15M+" in body or "70%+" in body or CASE_COUNT_RE.search(body)) and DISCLAIMER not in body.lower():
         fail(f"{f.name}: results claim without no-guarantee disclaimer")
+    for m in re.finditer(re.escape(TAGLINE), body, re.I):
+        if m.group(0) != TAGLINE:
+            fail(f"{f.name}: tagline capitalisation altered — {m.group(0)!r} must be {TAGLINE!r}")
+    for m in TAGLINE_DRIFT_RE.finditer(body):
+        fail(f"{f.name}: tagline reworded — {m.group(0)!r} must read {TAGLINE!r}")
+
+readme = ROOT / "README.md"
+if not readme.exists():
+    fail("README.md missing")
+else:
+    # The tagline must be used as the brand line, not merely listed in the
+    # trademark notice — otherwise the brand line could be swapped for softer
+    # wording while the notice alone keeps the check green.
+    lines = readme.read_text(encoding="utf-8").splitlines()
+    if not any(TAGLINE in l and "are trademarks of" not in l for l in lines):
+        fail(f"README.md: tagline {TAGLINE!r} must appear as the brand line, "
+             "not only inside the trademark notice")
 
 # 2. Per-page canonical facts
 for p in pages:
