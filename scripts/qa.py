@@ -138,10 +138,16 @@ for p in pages:
 # page, 404 included. Raw license text alone is not verifiable by a visitor,
 # so checking for the number is not enough — check the anchor and its target.
 DBPR_URL = "https://www.myfloridalicense.com/wl11.asp"
+# Match the href *value*, not its formatting: quote style and spacing are
+# incidental, so asserting them would fail CI on a harmless reformat.
+HREF_RE = re.compile(r"""href\s*=\s*["']([^"']*)["']""", re.I)
 anchor_re = re.compile(r"<a\s+([^>]*?)>\s*#([A-Z]{2}\d+)\s*</a>", re.I)
 for p in sorted(ROOT.glob("*.html")):
     body = p.read_text(encoding="utf-8")
-    linked = {num: f"href='{DBPR_URL}'" in attrs for attrs, num in anchor_re.findall(body)}
+    linked = {}
+    for attrs, num in anchor_re.findall(body):
+        href = HREF_RE.search(attrs)
+        linked[num] = bool(href) and href.group(1).strip() == DBPR_URL
     if PHONE not in body:
         fail(f"{p.name}: phone {PHONE} missing")
     for num in (LICENSE, FIRM_LICENSE):
@@ -190,7 +196,7 @@ if not wrangler.exists():
     fail("wrangler.jsonc missing")
 else:
     wtext = wrangler.read_text(encoding="utf-8")
-    if '"not_found_handling": "404-page"' not in wtext:
+    if not re.search(r'"not_found_handling"\s*:\s*"404-page"', wtext):
         fail('wrangler.jsonc: assets.not_found_handling must be "404-page", '
              "otherwise Cloudflare returns a bare 404 and 404.html is never served")
 
