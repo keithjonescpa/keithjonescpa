@@ -205,6 +205,22 @@ if css_path.exists():
         if not re.search(r"\." + re.escape(cls) + r"[\s,{:.]", css_all):
             fail(f"css/style.css: class {cls!r} is used in markup but never defined")
 
+# 2d. The nav and footer are hand-copied into every page, so they drift. A
+# 2026-08-05 audit caught one page missing an accessibility attribute the other
+# seven had. Require the shared blocks to be byte-identical everywhere.
+for block, pattern in (("nav", r"<nav class='top-nav'>.*?</nav>"),
+                       ("footer", r"<footer>.*?</footer>")):
+    seen = {}
+    for p in sorted(ROOT.glob("*.html")):
+        m = re.search(pattern, p.read_text(encoding="utf-8"), re.S)
+        if not m:
+            fail(f"{p.name}: shared {block} block missing")
+        else:
+            seen.setdefault(m.group(0), []).append(p.name)
+    if len(seen) > 1:
+        groups = " | ".join(", ".join(v) for v in seen.values())
+        fail(f"shared {block} block differs between pages: {groups}")
+
 # 3. Contact email present where mail is sent
 for name in ["contact.html", "js/script.js"]:
     if EMAIL not in (ROOT / name).read_text(encoding="utf-8"):
