@@ -19,6 +19,12 @@ wrong fact.
   exact string. Closing brand lockup:
   `Keith L. Jones, CPA` / `TheCPATaxProblemSolver™` /
   `Solving Bad Tax Problems for Good People™`.
+- Secondary campaign line (Keith, 2026-08-05):
+  **Helping Good People With Bad Tax Problems™** — a live mark, but
+  softer. Use only for consumer copy where reassurance matters more
+  than authority; never as the master tagline.
+- Trademark typography: never place a comma immediately after ™. List
+  marks one per line rather than comma-separated. CI enforces this.
 - Phone: 844-888-1040
 - Contact email: keith@keithjones.cpa (confirmed by Keith 2026-07-07)
 - Canonical domain for THIS SITE: **https://fdor.keithjones.cpa**

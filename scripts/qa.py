@@ -21,6 +21,18 @@ DISCLAIMER = "not a guarantee"
 # every occurrence must match exactly, so no contributor or tool can quietly
 # "improve" it. See CLAUDE.md.
 TAGLINE = "Solving Bad Tax Problems for Good People"
+TAGLINE_TM = TAGLINE + "\u2122"
+# Every mark claimed in the README trademark notice. Asserting these verbatim is
+# what catches an edit anywhere inside a mark — scanning for known-bad variants
+# can never be exhaustive.
+MARKS = [
+    "TheCPATaxProblemSolver\u2122",
+    TAGLINE_TM,
+    "Helping Good People With Bad Tax Problems\u2122",
+    "Florida Tax Guy\u2122",
+    "Florida Tax Survival Engine\u2122",
+    "FDOR Insider Advantage\u2122",
+]
 TAGLINE_DRIFT_RE = re.compile(
     r"Solving\s+Bad\s+Tax\s+Problems(?!\s+for\s+Good\s+People)", re.I
 )
@@ -62,9 +74,13 @@ for f in text_files():
         fail(f"{f.name}: non-canonical www hostname present")
     if ("$15M+" in body or "70%+" in body or CASE_COUNT_RE.search(body)) and DISCLAIMER not in body.lower():
         fail(f"{f.name}: results claim without no-guarantee disclaimer")
+    if "™," in body:
+        fail(f"{f.name}: comma immediately after ™ — list marks one per line instead")
     for m in re.finditer(re.escape(TAGLINE), body, re.I):
         if m.group(0) != TAGLINE:
             fail(f"{f.name}: tagline capitalisation altered — {m.group(0)!r} must be {TAGLINE!r}")
+        elif body[m.end():m.end() + 1] != "\u2122":
+            fail(f"{f.name}: tagline is missing its ™ symbol")
     for m in TAGLINE_DRIFT_RE.finditer(body):
         fail(f"{f.name}: tagline reworded — {m.group(0)!r} must read {TAGLINE!r}")
 
@@ -76,9 +92,28 @@ else:
     # trademark notice — otherwise the brand line could be swapped for softer
     # wording while the notice alone keeps the check green.
     lines = readme.read_text(encoding="utf-8").splitlines()
-    if not any(TAGLINE in l and "are trademarks of" not in l for l in lines):
-        fail(f"README.md: tagline {TAGLINE!r} must appear as the brand line, "
+    # Map the trademark-notice block so a mark listed there cannot, on its own,
+    # satisfy the brand-line requirement. Detected case-insensitively and across
+    # multiple lines, since the notice lists one mark per line.
+    notice, in_notice = set(), False
+    for i, line in enumerate(lines):
+        if re.search(r"trademarks? of", line, re.I):
+            in_notice = True
+        if in_notice:
+            notice.add(i)
+        if in_notice and "</sub>" in line:
+            in_notice = False
+    notice_text = "\n".join(lines[i] for i in sorted(notice))
+    body_text = "\n".join(l for i, l in enumerate(lines) if i not in notice)
+
+    if TAGLINE_TM not in body_text:
+        fail(f"README.md: tagline {TAGLINE_TM!r} must appear as the brand line, "
              "not only inside the trademark notice")
+    if not notice:
+        fail("README.md: trademark notice missing")
+    for mark in MARKS:
+        if mark not in notice_text:
+            fail(f"README.md: trademark notice is missing or alters {mark!r}")
 
 # 2. Per-page canonical facts
 for p in pages:
