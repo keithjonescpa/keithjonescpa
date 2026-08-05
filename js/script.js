@@ -42,8 +42,8 @@ if (garnishCalc) {
   const FLOOR_MULTIPLE = { weekly: 30, biweekly: 60, semimonthly: 65, monthly: 130 };
   const PERIOD_LABEL = {
     weekly: 'weekly',
-    biweekly: 'every-two-weeks',
-    semimonthly: 'twice-monthly',
+    biweekly: 'bi-weekly',
+    semimonthly: 'semi-monthly',
     monthly: 'monthly',
   };
   const usd = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
