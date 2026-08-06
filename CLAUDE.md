@@ -22,6 +22,12 @@ wrong fact.
   `/about.html`. JSON-LD `url` fields use the root for
   ProfessionalService and the page's own URL for page-level schema
   types.
+- 2026-08-06: Keith confirmed he manages the apex site (keithjones.cpa)
+  directly, so a redirect from `keithjones.cpa/irs-garnishment-calculator`
+  to `https://fdor.keithjones.cpa/irs-garnishment-calculator` is his to
+  set up on the apex's own hosting — that hosting is outside this repo,
+  so nothing here can create the redirect. Once live, spot-check it and
+  drop the confirmation here.
 - Hosting (decided 2026-07-16): Cloudflare Workers static assets via
   the Git-connected Worker `keithjonescpa` — production deploys from
   `main` on every push and serves https://fdor.keithjones.cpa (custom
