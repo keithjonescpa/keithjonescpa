@@ -109,7 +109,6 @@ main{ padding:32px 20px; max-width:1100px; margin:0 auto; }
 .cta-band{ text-align:center; background:var(--color-bg-alt); padding:24px; border-radius:var(--radius); margin-top:24px; }
 .footer-inner{ text-align:center; padding:24px; background:var(--color-brand); color:var(--color-text-on-brand); }
 .footer-inner a.phone{ color:var(--color-text-on-brand); font-weight:700; }
-.footer-inner a.license{ color:var(--color-text-on-brand); text-decoration:underline; }
 
 form{ display:flex; flex-direction:column; gap:10px; }
 label{ display:flex; flex-direction:column; text-align:left; font-weight:600; }
