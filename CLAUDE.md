@@ -18,6 +18,20 @@ wrong fact.
   (https://www.myfloridalicense.com/wl11.asp) — link the search page,
   never a DBPR record deep-link, because those carry session IDs and
   break.
+- Brand tagline (**protected wording**, confirmed by Keith 2026-08-05):
+  **Solving Bad Tax Problems for Good People™** — reproduce exactly,
+  including capitalisation. Do not soften, shorten, or reword it
+  ("helping taxpayers", generic "tax relief" phrasing) in any
+  external-facing asset; consistency is the equity. CI enforces the
+  exact string. Closing brand lockup:
+  `Keith L. Jones, CPA` / `TheCPATaxProblemSolver™` /
+  `Solving Bad Tax Problems for Good People™`.
+- Secondary campaign line (Keith, 2026-08-05):
+  **Helping Good People With Bad Tax Problems™** — a live mark, but
+  softer. Use only for consumer copy where reassurance matters more
+  than authority; never as the master tagline.
+- Trademark typography: never place a comma immediately after ™. List
+  marks one per line rather than comma-separated. CI enforces this.
 - Phone: 844-888-1040
 - Contact email: keith@keithjones.cpa (confirmed by Keith 2026-07-07)
 - Canonical domain for THIS SITE: **https://fdor.keithjones.cpa**
