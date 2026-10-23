@@ -63,6 +63,11 @@ wrong fact.
 - Any results claim ($15M+, 70%+, case counts) must carry the
   no-guarantee disclaimer ("Past results are not a guarantee of future
   outcomes.").
+- 2026-10-23: the header lockup carries the TheCPATaxProblemSolver™
+  family mark (`assets/family-mark.svg`, the approved parent emblem
+  shared with masterandgrow.com and floridataxsavior.com) beside
+  "Keith Jones, CPA" and the line "Part of TheCPATaxProblemSolver™
+  family", so every family site shows the same parent mark.
 
 ## Repository rules
 
