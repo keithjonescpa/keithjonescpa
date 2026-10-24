@@ -84,6 +84,8 @@ h1, h2, h3{ font-family:var(--font-heading); }
 body{ margin:0; font-family:var(--font-body); color:var(--color-text); line-height:1.6; background:var(--color-bg); }
 a{ color:var(--color-accent); text-decoration:none; }
 
+.skip-link{ position:absolute; left:-999px; top:8px; z-index:100; background:var(--color-gold); color:#101827; padding:8px 14px; border-radius:6px; font-weight:700; text-decoration:none; }
+.skip-link:focus{ left:8px; outline:3px solid #101827; }
 .top-nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 20px; background:var(--color-brand); color:var(--color-text-on-brand); position:sticky; top:0; z-index:10; }
 .top-nav .brand{ display:flex; align-items:center; text-decoration:none; color:inherit; min-width:0; }
 .top-nav .brand img{ height:56px; width:auto; display:block; }
