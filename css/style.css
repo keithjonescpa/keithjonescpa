@@ -134,7 +134,7 @@ button{ cursor:pointer; }
 
 /* TheCPATaxProblemSolver family block in the footer */
 .footer-family{ margin-top:18px; padding-top:16px; border-top:1px solid var(--color-border, rgba(0,0,0,.12)); }
-.footer-family-title{ font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--color-gold); margin:0 0 8px; font-weight:700; }
+.footer-family-title{ font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:inherit; opacity:.92; margin:0 0 8px; font-weight:700; }
 .footer-family ul{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px 20px; }
 .footer-family li{ display:grid; gap:2px; font-size:.9rem; }
 .footer-family li a{ font-weight:700; text-decoration:none; color:inherit; }
