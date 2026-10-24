@@ -2,6 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "keithjonescpa",
   "compatibility_date": "2026-07-16",
+  // fdor.keithjones.cpa is the only public surface. The *.workers.dev copy was
+  // switched off on 2026-10-23 (posture runbook C4); every Workers Build turned
+  // it back on until this said false (seen again 2026-10-24 00:53 UTC).
+  "workers_dev": false,
+  "preview_urls": false,
   "observability": {
     "enabled": true
   },
