@@ -141,5 +141,5 @@ button{ cursor:pointer; }
 .footer-family li{ display:grid; gap:2px; font-size:.9rem; }
 .footer-family li a{ font-weight:700; text-decoration:none; color:inherit; }
 .footer-family li a:hover{ text-decoration:underline; }
-.footer-family li span{ color:var(--color-text-muted, #666); font-size:.82rem; }
-.footer-family-line{ margin:12px 0 0; font-size:.85rem; color:var(--color-text-muted, #666); }
+.footer-family li span{ color:inherit; opacity:.85; font-size:.82rem; }
+.footer-family-line{ margin:12px 0 0; font-size:.85rem; color:inherit; opacity:.85; }
